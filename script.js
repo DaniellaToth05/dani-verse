@@ -2,10 +2,15 @@
 let isFocusingLeft = false;
 let startTime = Date.now();
 
+// array to hold the current stars
+const stars = []; 
+
+// maximum number of stars
+const MAX_STARS = 90; 
+
 // function to generate stars with more of a focus on the left side (to replace ones exiting the right side)
 function generateStars() {
-  const numStars = isFocusingLeft ? 3 : 1; // more stars after 3 seconds, less before
-  for (let i = 0; i < numStars; i++) {
+  while (stars.length < MAX_STARS) {
     const star = document.createElement('div');
     star.classList.add('star');
     
@@ -34,9 +39,10 @@ function generateStars() {
     const size = Math.random() * 2 + 1; // size between 1 and 3px
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
-    star.style.animationDuration = `${Math.random() * 30 + 20}s`; // random speed
+    star.style.animationDuration = `${Math.random() * 10 + 50}s`; // random speed
     
     document.body.appendChild(star);
+    stars.push(star); // add the new star to the array
   }
 }
 
@@ -71,12 +77,30 @@ function adjustGenerationRate() {
   }
 }
 
-// generate stars at a slower pace, every 300 milliseconds so it doesn't get overcrowded
-setInterval(generateStars, 300); 
-setInterval(adjustGenerationRate, 100); 
+// function to replace stars that leave the screen
+function updateStars() {
+  for (let i = stars.length - 1; i >= 0; i--) {
+    const star = stars[i];
+    const rect = star.getBoundingClientRect();
+
+    // check if the star has exited the screen
+    if (rect.right < 0 || rect.bottom < 0 || rect.left > window.innerWidth || rect.top > window.innerHeight) {
+      star.remove();
+      stars.splice(i, 1); // remove the star from the array
+    }
+  }
+  generateStars(); // ensure the star count stays at 60
+}
+
+// generate the initial stars
+generateStars();
+
+// periodically update stars every 100 milliseconds
+setInterval(updateStars, 100);
+setInterval(adjustGenerationRate, 100);
 
 // create shooting stars periodically, every 2 seconds
-setInterval(createShootingStar, 2000); 
+setInterval(createShootingStar, 2000);
 
 // for the rocket to follow the cursor with lag effect
 const rocket = document.getElementById('rocket');
