@@ -195,8 +195,8 @@ header nav ul li a .icon-title span:nth-child(8) {
 }
 
 h1 {
-    font-size: 5vw;
-    margin-bottom: 20px;
+    font-size: 4vw;
+    margin-bottom: 1.5vw;
     width: 80vw;
     font-family: Garet;
     color: #a6cbf7;
@@ -204,10 +204,11 @@ h1 {
 }
 
 p {
-    font-size: 2.5vw;
+    font-size: 1.5vw;
     font-family: Garet;
     color: #a6cbf7;
     text-shadow: 0 0 20px #a6cbf7;
+    margin-bottom: 5vw;
 }
 
 /* rocketship CSS */
