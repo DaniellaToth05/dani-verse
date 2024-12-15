@@ -1,4 +1,4 @@
-/* Reset default margins and padding */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@
     src: url(fonts/Garet-Book.otf);
 }
 
-/* Body and HTML styling */
+/* body and HTML styling */
 body, html {
     height: 100%;
     width: 100%;
@@ -18,12 +18,12 @@ body, html {
     overflow: hidden;
     background: black;
     position: relative;
-    padding-top: 80px; /* Prevent overlap with fixed header */
+    padding-top: 80px; 
 }
 
-/* Transparent Header Styling */
+/* header styling */
 header {
-    position: fixed;        /* Keeps the header fixed at the top */
+    position: fixed;      
     top: 0;
     left: 0;
     width: 100%;
@@ -32,7 +32,7 @@ header {
     z-index: 5; 
 }
 
-/* Navigation List Styling */
+/* navigation List Styling */
 header nav ul {
     display: flex;
     justify-content: left;
@@ -44,64 +44,92 @@ header nav ul {
     margin-top: 1vw;
 }
 
-/* Icon link styling */
+/* icon link styling */
 header nav ul li a {
     display: flex;
-    align-items: center;
-    position: relative;
+    flex-direction: column;
+    align-items: center;  
     text-decoration: none;
     color: #a6cbf7;
 }
 
-/* Icon styling */
+header nav ul li:nth-child(2) a {
+    padding-left: 63vw;
+}
+
+/* icon styling */
 header nav ul li a img {
     width: 2.5vw;
     height: 2.5vw;
     transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0 0 10px #a6cbf7); /* Light blue glow */
+    filter: drop-shadow(0 0 10px #a6cbf7); 
 }
 
-/* Hover Effect for Icons */
+/* hover effect for icons */
 header nav ul li a:hover img {
     transform: scale(1.2);
-    filter: drop-shadow(0 0 20px #a6cbf7); /* Brighter glow on hover */
+    filter: drop-shadow(0 0 20px #a6cbf7);
 }
 
-/* Icon title styling */
+/* icon title styling */
 header nav ul li a .icon-title {
-    display: flex;
+    display: inline-flex;
     white-space: nowrap;
-    margin-left: 1.5vw;
-    font-size: 1.5vw;
-    color: #a6cbf7; /* Light blue color */
-    filter: drop-shadow(0 0 10px #a6cbf7); /* Light blue glow */
+    font-size: 1vw;
+    color: #a6cbf7; 
+    filter: drop-shadow(0 0 10px #a6cbf7); 
+    opacity: 0;          
+    margin-top: 0.5vw;    
+    transition: opacity 0.3s ease, margin-top 0.3s ease;
 }
 
-/* Letter-by-letter animation */
+/* show title on hover */
+header nav ul li a:hover .icon-title {
+    opacity: 1;
+    margin-top: 1vw;     
+}
+
+/* letter-by-letter animation */
 header nav ul li a .icon-title span {
     display: inline-block;
     opacity: 0;
-    transform: translateX(-10px); /* Start slightly to the left */
+    transform: translateX(-10px);
     transition: opacity 0.6s ease, transform 0.2s ease;
 }
 
-/* Hover effect to trigger the animation */
+/* hover effect to trigger the animation */
 header nav ul li a:hover .icon-title span {
     opacity: 1;
-    transform: translateX(0); /* Move to original position */
+    transform: translateX(0);
 }
 
-/* Apply delay to each letter */
-header nav ul li a .icon-title span:nth-child(1) { transition-delay: 0.05s; }
-header nav ul li a .icon-title span:nth-child(2) { transition-delay: 0.1s; }
-header nav ul li a .icon-title span:nth-child(3) { transition-delay: 0.15s; }
-header nav ul li a .icon-title span:nth-child(4) { transition-delay: 0.2s; }
-header nav ul li a .icon-title span:nth-child(5) { transition-delay: 0.25s; }
-header nav ul li a .icon-title span:nth-child(6) { transition-delay: 0.3s; }
-header nav ul li a .icon-title span:nth-child(7) { transition-delay: 0.35s; }
-header nav ul li a .icon-title span:nth-child(8) { transition-delay: 0.4s; }
+/* apply the delay to each letter */
+header nav ul li a .icon-title span:nth-child(1) { 
+    transition-delay: 0.05s; 
+}
+header nav ul li a .icon-title span:nth-child(2) { 
+    transition-delay: 0.1s; 
+}
+header nav ul li a .icon-title span:nth-child(3) { 
+    transition-delay: 0.15s; 
+}
+header nav ul li a .icon-title span:nth-child(4) { 
+    transition-delay: 0.2s; 
+}
+header nav ul li a .icon-title span:nth-child(5) { 
+    transition-delay: 0.25s; 
+}
+header nav ul li a .icon-title span:nth-child(6) { 
+    transition-delay: 0.3s; 
+}
+header nav ul li a .icon-title span:nth-child(7) { 
+    transition-delay: 0.35s; 
+}
+header nav ul li a .icon-title span:nth-child(8) { 
+    transition-delay: 0.4s; 
+}
 
-/* Background Styling */
+/* background styling */
 #space-background {
     position: absolute;
     top: 0;
@@ -113,7 +141,27 @@ header nav ul li a .icon-title span:nth-child(8) { transition-delay: 0.4s; }
     z-index: -1;
 }
 
-/* Shooting stars */
+/* background stars */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: starMovement 30s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* glowing effect */
+}
+
+@keyframes starMovement {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+/* shooting stars */
 .shooting-star {
     position: absolute;
     width: 4px;
@@ -135,7 +183,7 @@ header nav ul li a .icon-title span:nth-child(8) { transition-delay: 0.4s; }
     }
 }
 
-/* Content Styling */
+/* content styling */
 .content {
     position: absolute;
     top: 50%;
@@ -162,7 +210,7 @@ p {
     text-shadow: 0 0 20px #a6cbf7;
 }
 
-/* Rocketship CSS */
+/* rocketship CSS */
 #rocket {
     position: absolute;
     width: 30px;
