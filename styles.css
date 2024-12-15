@@ -1,3 +1,4 @@
+/* Reset default margins and padding */
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,7 @@
     src: url(fonts/Garet-Book.otf);
 }
 
+/* Body and HTML styling */
 body, html {
     height: 100%;
     width: 100%;
@@ -16,8 +18,90 @@ body, html {
     overflow: hidden;
     background: black;
     position: relative;
+    padding-top: 80px; /* Prevent overlap with fixed header */
 }
 
+/* Transparent Header Styling */
+header {
+    position: fixed;        /* Keeps the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+    z-index: 5; 
+}
+
+/* Navigation List Styling */
+header nav ul {
+    display: flex;
+    justify-content: left;
+    list-style-type: none;
+    gap: 3vw;
+    margin: 0;
+    padding: 0;
+    margin-left: 3vw;
+    margin-top: 1vw;
+}
+
+/* Icon link styling */
+header nav ul li a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    color: #a6cbf7;
+}
+
+/* Icon styling */
+header nav ul li a img {
+    width: 2.5vw;
+    height: 2.5vw;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 10px #a6cbf7); /* Light blue glow */
+}
+
+/* Hover Effect for Icons */
+header nav ul li a:hover img {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px #a6cbf7); /* Brighter glow on hover */
+}
+
+/* Icon title styling */
+header nav ul li a .icon-title {
+    display: flex;
+    white-space: nowrap;
+    margin-left: 1.5vw;
+    font-size: 1.5vw;
+    color: #a6cbf7; /* Light blue color */
+    filter: drop-shadow(0 0 10px #a6cbf7); /* Light blue glow */
+}
+
+/* Letter-by-letter animation */
+header nav ul li a .icon-title span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-10px); /* Start slightly to the left */
+    transition: opacity 0.6s ease, transform 0.2s ease;
+}
+
+/* Hover effect to trigger the animation */
+header nav ul li a:hover .icon-title span {
+    opacity: 1;
+    transform: translateX(0); /* Move to original position */
+}
+
+/* Apply delay to each letter */
+header nav ul li a .icon-title span:nth-child(1) { transition-delay: 0.05s; }
+header nav ul li a .icon-title span:nth-child(2) { transition-delay: 0.1s; }
+header nav ul li a .icon-title span:nth-child(3) { transition-delay: 0.15s; }
+header nav ul li a .icon-title span:nth-child(4) { transition-delay: 0.2s; }
+header nav ul li a .icon-title span:nth-child(5) { transition-delay: 0.25s; }
+header nav ul li a .icon-title span:nth-child(6) { transition-delay: 0.3s; }
+header nav ul li a .icon-title span:nth-child(7) { transition-delay: 0.35s; }
+header nav ul li a .icon-title span:nth-child(8) { transition-delay: 0.4s; }
+
+/* Background Styling */
 #space-background {
     position: absolute;
     top: 0;
@@ -26,31 +110,10 @@ body, html {
     height: 100%;
     background: radial-gradient(circle, rgba(0,0,0,1), rgb(17, 17, 35));
     overflow: hidden;
+    z-index: -1;
 }
 
-/* background stars */
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background-color: white;
-    border-radius: 50%;
-    animation: starMovement 30s linear infinite;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* glowing effect */
-}
-
-@keyframes starMovement {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(100vw);
-    }
-}
-
-
-
-/* shooting stars */
+/* Shooting stars */
 .shooting-star {
     position: absolute;
     width: 4px;
@@ -72,6 +135,7 @@ body, html {
     }
 }
 
+/* Content Styling */
 .content {
     position: absolute;
     top: 50%;
@@ -98,12 +162,12 @@ p {
     text-shadow: 0 0 20px #a6cbf7;
 }
 
-/* rocketship CSS */
+/* Rocketship CSS */
 #rocket {
     position: absolute;
     width: 30px;
     height: 90px;
-    z-index: 2;
-    pointer-events: none; 
-    transition: transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out; /* smooth transition for movement & rotation */
+    z-index: 6;
+    pointer-events: none;
+    transition: transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out;
 }
